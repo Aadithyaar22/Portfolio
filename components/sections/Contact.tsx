@@ -1,16 +1,43 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Send, CheckCircle2, AlertCircle, Github, Linkedin, Mail, Twitter } from 'lucide-react'
-import { personalInfo } from '@/lib/data'
+import { Send, CheckCircle2, AlertCircle, Github, Linkedin, Mail, Twitter, MapPin } from 'lucide-react'
 import SectionHeader from '@/components/shared/SectionHeader'
 
 const socialRows = [
-  { icon: <Github size={18} />, label: 'GitHub', href: personalInfo.github, color: '#F1F0ED', handle: '@Aadithyaar22' },
-  { icon: <Linkedin size={18} />, label: 'LinkedIn', href: personalInfo.linkedin, color: '#0A66C2', handle: '/in/aadithya-a-r' },
-  { icon: <Mail size={18} />, label: 'Email', href: `mailto:${personalInfo.email}`, color: '#F59E0B', handle: 'aadithyaar22@gmail.com' },
-  { icon: <Twitter size={18} />, label: 'Twitter', href: personalInfo.twitter, color: '#1DA1F2', handle: '@AadithyaAR1' },
+  {
+    icon: <Github size={18} />,
+    label: 'GitHub',
+    href: 'https://github.com/Aadithyaar22',
+    color: '#F1F0ED',
+    handle: '@Aadithyaar22',
+    external: true,
+  },
+  {
+    icon: <Linkedin size={18} />,
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/aadithya-a-r/',
+    color: '#0A66C2',
+    handle: '/in/aadithya-a-r',
+    external: true,
+  },
+  {
+    icon: <Mail size={18} />,
+    label: 'Email',
+    href: 'mailto:aadithyaar22@gmail.com',
+    color: '#F59E0B',
+    handle: 'aadithyaar22@gmail.com',
+    external: false,
+  },
+  {
+    icon: <Twitter size={18} />,
+    label: 'Twitter / X',
+    href: 'https://x.com/AadithyaAR1',
+    color: '#1DA1F2',
+    handle: '@AadithyaAR1',
+    external: true,
+  },
 ]
 
 type FormState = 'idle' | 'sending' | 'success' | 'error'
@@ -26,7 +53,7 @@ export default function Contact() {
     if (!form.name.trim()) e.name = 'Name is required'
     if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) e.email = 'Valid email required'
     if (!form.subject.trim()) e.subject = 'Subject is required'
-    if (form.message.trim().length < 20) e.message = 'Message should be at least 20 characters'
+    if (form.message.trim().length < 20) e.message = 'At least 20 characters'
     return e
   }
 
@@ -36,9 +63,7 @@ export default function Contact() {
     if (Object.keys(errs).length) { setErrors(errs); return }
     setErrors({})
     setFormState('sending')
-
     try {
-      // EmailJS integration
       const emailjs = await import('@emailjs/browser')
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
@@ -57,21 +82,22 @@ export default function Contact() {
     } catch {
       setFormState('error')
     }
-
-    setTimeout(() => setFormState('idle'), 4000)
+    setTimeout(() => setFormState('idle'), 5000)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-    if (errors[e.target.name]) setErrors(er => ({ ...er, [e.target.name]: '' }))
+    const { name, value } = e.target
+    setForm(f => ({ ...f, [name]: value }))
+    if (errors[name]) setErrors(er => ({ ...er, [name]: '' }))
   }
 
   return (
     <section id="contact" className="section-padding relative overflow-hidden" style={{ background: 'rgba(5,5,10,0.9)' }}>
-      {/* Animated grid background */}
-      <div className="absolute inset-0 bg-grid opacity-20" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px"
-           style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.3), transparent)' }} />
+      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px pointer-events-none"
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.3), transparent)' }}
+      />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <SectionHeader
@@ -82,7 +108,7 @@ export default function Contact() {
         />
 
         <div className="grid lg:grid-cols-2 gap-16 items-start max-w-5xl mx-auto">
-          {/* Left — info */}
+          {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -90,46 +116,65 @@ export default function Contact() {
           >
             <h3 className="font-clash text-3xl font-bold text-text-primary mb-4">
               Got an opportunity?<br />
-              <span className="text-gradient-amber">Let's build together.</span>
+              <span className="text-gradient-amber">Let&apos;s build together.</span>
             </h3>
             <p className="text-text-secondary leading-relaxed mb-10">
-              Whether it's a research internship, collaboration on a GenAI project, or an MS opportunity — I'm all ears.
-              Typically respond within 24 hours.
+              Whether it&apos;s a research internship, collaboration on a GenAI project, or an MS opportunity — I&apos;m all ears. Typically respond within 24 hours.
             </p>
 
-            {/* Contact options */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {socialRows.map((s, i) => (
-                <motion.a
+                <motion.div
                   key={s.label}
-                  href={s.href}
-                  target={s.label !== 'Email' ? '_blank' : undefined}
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-xl group transition-all"
-                  style={{ background: 'rgba(12,12,20,0.9)', border: '1px solid rgba(30,30,48,1)' }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.1 + i * 0.1 }}
-                  whileHover={{ x: 4, borderColor: s.color + '40', boxShadow: `0 4px 20px ${s.color}12` }}
+                  whileHover={{ x: 4 }}
                 >
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors"
-                    style={{ background: `${s.color}12`, color: s.color }}
+                  
+                    href={s.href}
+                    target={s.external ? '_blank' : undefined}
+                    rel={s.external ? 'noopener noreferrer' : undefined}
+                    aria-label={s.label}
+                    style={{
+                      background: 'rgba(12,12,20,0.9)',
+                      border: '1px solid rgba(30,30,48,1)',
+                      borderRadius: '12px',
+                      padding: '16px',
+                      textDecoration: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '16px',
+                      cursor: 'none',
+                      transition: 'border-color 0.3s, box-shadow 0.3s',
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget
+                      el.style.borderColor = s.color + '50'
+                      el.style.boxShadow = `0 4px 20px ${s.color}15`
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget
+                      el.style.borderColor = 'rgba(30,30,48,1)'
+                      el.style.boxShadow = 'none'
+                    }}
                   >
-                    {s.icon}
-                  </div>
-                  <div>
-                    <div className="font-dm text-sm font-medium text-text-primary">{s.label}</div>
-                    <div className="font-fira text-xs text-text-muted">{s.handle}</div>
-                  </div>
-                  <div className="ml-auto text-text-muted group-hover:text-amber-400 transition-colors">
-                    →
-                  </div>
-                </motion.a>
+                    <div
+                      className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ background: `${s.color}15`, color: s.color }}
+                    >
+                      {s.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-dm text-sm font-medium text-text-primary">{s.label}</div>
+                      <div className="font-fira text-xs text-text-muted truncate">{s.handle}</div>
+                    </div>
+                    <div className="ml-auto font-fira text-sm text-text-muted flex-shrink-0">→</div>
+                  </a>
+                </motion.div>
               ))}
             </div>
 
-            {/* Location chip */}
             <motion.div
               className="mt-8 flex items-center gap-3 p-4 rounded-xl"
               style={{ background: 'rgba(245,158,11,0.05)', border: '1px solid rgba(245,158,11,0.12)' }}
@@ -137,9 +182,9 @@ export default function Contact() {
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.6 }}
             >
-              <span className="text-xl">📍</span>
+              <MapPin size={18} style={{ color: '#F59E0B', flexShrink: 0 }} />
               <div>
-                <div className="font-dm text-sm font-medium text-text-primary">Based in Bengaluru, India</div>
+                <div className="font-dm text-sm font-medium text-text-primary">Bengaluru, India</div>
                 <div className="font-fira text-xs text-text-muted">IST (UTC +5:30) · Open to Remote</div>
               </div>
             </motion.div>
@@ -153,29 +198,31 @@ export default function Contact() {
           >
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
               <div className="grid sm:grid-cols-2 gap-5">
-                {/* Name */}
                 <div>
-                  <label className="block font-fira text-xs text-text-muted mb-2">Name</label>
+                  <label htmlFor="contact-name" className="block font-fira text-xs text-text-muted mb-2">Name</label>
                   <input
+                    id="contact-name"
                     name="name"
+                    type="text"
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Your name"
+                    autoComplete="name"
                     className="form-input"
                     style={errors.name ? { borderColor: '#FF6B6B' } : {}}
                   />
                   {errors.name && <p className="font-fira text-[10px] mt-1" style={{ color: '#FF6B6B' }}>{errors.name}</p>}
                 </div>
-
-                {/* Email */}
                 <div>
-                  <label className="block font-fira text-xs text-text-muted mb-2">Email</label>
+                  <label htmlFor="contact-email" className="block font-fira text-xs text-text-muted mb-2">Email</label>
                   <input
+                    id="contact-email"
                     name="email"
                     type="email"
                     value={form.email}
                     onChange={handleChange}
                     placeholder="your@email.com"
+                    autoComplete="email"
                     className="form-input"
                     style={errors.email ? { borderColor: '#FF6B6B' } : {}}
                   />
@@ -183,11 +230,12 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Subject */}
               <div>
-                <label className="block font-fira text-xs text-text-muted mb-2">Subject</label>
+                <label htmlFor="contact-subject" className="block font-fira text-xs text-text-muted mb-2">Subject</label>
                 <input
+                  id="contact-subject"
                   name="subject"
+                  type="text"
                   value={form.subject}
                   onChange={handleChange}
                   placeholder="Research collaboration / Internship / ..."
@@ -197,10 +245,10 @@ export default function Contact() {
                 {errors.subject && <p className="font-fira text-[10px] mt-1" style={{ color: '#FF6B6B' }}>{errors.subject}</p>}
               </div>
 
-              {/* Message */}
               <div>
-                <label className="block font-fira text-xs text-text-muted mb-2">Message</label>
+                <label htmlFor="contact-message" className="block font-fira text-xs text-text-muted mb-2">Message</label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   value={form.message}
                   onChange={handleChange}
@@ -212,7 +260,6 @@ export default function Contact() {
                 {errors.message && <p className="font-fira text-[10px] mt-1" style={{ color: '#FF6B6B' }}>{errors.message}</p>}
               </div>
 
-              {/* Submit */}
               <motion.button
                 type="submit"
                 disabled={formState === 'sending'}
@@ -222,38 +269,33 @@ export default function Contact() {
               >
                 <AnimatePresence mode="wait">
                   {formState === 'idle' && (
-                    <motion.span key="idle" className="flex items-center gap-2"
-                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                    <motion.span key="idle" className="flex items-center gap-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                       <Send size={16} /><span>Send Message</span>
                     </motion.span>
                   )}
                   {formState === 'sending' && (
-                    <motion.span key="sending" className="flex items-center gap-2"
-                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      <motion.div className="w-4 h-4 rounded-full border-2 border-void border-t-transparent"
-                        animate={{ rotate: 360 }} transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }} />
+                    <motion.span key="sending" className="flex items-center gap-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      <motion.div className="w-4 h-4 rounded-full border-2 border-void border-t-transparent" animate={{ rotate: 360 }} transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }} />
                       <span>Sending...</span>
                     </motion.span>
                   )}
                   {formState === 'success' && (
-                    <motion.span key="success" className="flex items-center gap-2"
-                      initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
-                      <CheckCircle2 size={16} /><span>Sent successfully!</span>
+                    <motion.span key="success" className="flex items-center gap-2" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
+                      <CheckCircle2 size={16} /><span>Sent successfully! 🎉</span>
                     </motion.span>
                   )}
                   {formState === 'error' && (
-                    <motion.span key="error" className="flex items-center gap-2"
-                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      <AlertCircle size={16} /><span>Failed. Try email directly.</span>
+                    <motion.span key="error" className="flex items-center gap-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      <AlertCircle size={16} /><span>Failed — try email directly</span>
                     </motion.span>
                   )}
                 </AnimatePresence>
               </motion.button>
 
               <p className="font-fira text-xs text-center text-text-muted">
-                Or email directly at{' '}
-                <a href={`mailto:${personalInfo.email}`} className="text-amber-400 hover:underline">
-                  {personalInfo.email}
+                Or email at{' '}
+                <a href="mailto:aadithyaar22@gmail.com" style={{ color: '#F59E0B', cursor: 'none' }}>
+                  aadithyaar22@gmail.com
                 </a>
               </p>
             </form>

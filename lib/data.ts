@@ -19,7 +19,7 @@ export const personalInfo = {
   location: 'Bengaluru, India',
   college: 'Global Academy of Technology',
   degree: 'B.Tech CSE (AI & ML)',
-  batch: '2022 – 2026',
+  batch: '2023 – 2027',
   resumeUrl: '/resume.pdf',
   bio: [
     "I don't just build AI models — I build production-grade AI systems that actually ship. Currently pursuing B.Tech in CSE with AI & ML specialization at Global Academy of Technology, Bengaluru, I've spent the last two years bridging the gap between academic research and real-world deployments.",
@@ -33,7 +33,7 @@ export const stats = [
   { value: 20, suffix: '+', label: 'GitHub Repos' },
   { value: 6, suffix: '+', label: 'Production Projects' },
   { value: 8, suffix: '+', label: 'AI/ML Stacks Used' },
-  { value: 100, suffix: '+', label: 'LeetCode Solved' },
+  { value: 50, suffix: '+', label: 'LeetCode Solved' },
 ]
 
 export const skills = {
@@ -167,12 +167,12 @@ export const projects = [
 
 export const timeline = [
   {
-    year: '2022',
+    year: '2023',
     type: 'education',
     title: 'B.Tech CSE (AI & ML)',
     org: 'Global Academy of Technology',
     location: 'Bengaluru, India',
-    description: 'Pursuing specialization in Artificial Intelligence & Machine Learning. Core coursework in ML Theory, Deep Learning, Computer Vision, NLP, and Systems Programming.',
+    description: 'Joined GAT in 2023 to pursue B.Tech pursue specialization in Artificial Intelligence & Machine Learning. Core coursework in ML Theory, Deep Learning, Computer Vision, NLP, and Systems Programming.',
     highlights: ['AI & ML Specialization', 'Active ML Projects', 'Competitive Programming'],
     color: '#F59E0B',
   },
