@@ -131,7 +131,7 @@ export default function Contact() {
                   transition={{ delay: 0.1 + i * 0.1 }}
                   whileHover={{ x: 4 }}
                 >
-                  
+                  <a
                     href={s.href}
                     target={s.external ? '_blank' : undefined}
                     rel={s.external ? 'noopener noreferrer' : undefined}
