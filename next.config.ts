@@ -7,9 +7,6 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'github-readme-stats.vercel.app' },
     ],
   },
-  experimental: {
-    optimizeCss: true,
-  },
 }
 
 export default nextConfig
