@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Github, ExternalLink, Sparkles, Star } from 'lucide-react'
+import { Github, ExternalLink, Sparkles, Star, Award } from 'lucide-react'
 import { projects } from '@/lib/data'
 import SectionHeader from '@/components/shared/SectionHeader'
 
@@ -23,7 +23,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   return (
     <motion.div
       ref={ref}
-      className="relative rounded-2xl overflow-hidden project-card"
+      className="relative rounded-2xl overflow-hidden project-card h-full flex flex-col"
       style={{
         background: 'rgba(12,12,20,0.9)',
         border: `1px solid ${hovered ? project.color + '50' : 'rgba(30,30,48,1)'}`,
@@ -57,7 +57,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         />
       )}
 
-      <div className="p-7 relative z-10">
+      <div className="p-7 relative z-10 flex flex-col flex-1">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -77,7 +77,13 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
               <h3 className="font-clash font-bold text-lg text-text-primary leading-tight">{project.title}</h3>
             </div>
           </div>
-          {project.featured && (
+          {project.award ? (
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-fira flex-shrink-0 text-right"
+                 style={{ background: `${project.color}14`, color: project.color, border: `1px solid ${project.color}45` }}>
+              <Award size={12} style={{ flexShrink: 0 }} />
+              {project.award}
+            </div>
+          ) : project.featured && (
             <div className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-fira flex-shrink-0"
                  style={{ background: 'rgba(245,158,11,0.1)', color: '#F59E0B', border: '1px solid rgba(245,158,11,0.2)' }}>
               <Star size={10} />
@@ -119,7 +125,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mt-auto">
           {project.github && (
             <motion.a
               href={project.github}
@@ -200,23 +206,19 @@ export default function Projects() {
         </div>
 
         {/* Project grid */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((project, i) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
-                className={project.featured && i === 0 && filtered.length > 2 ? 'lg:col-span-2' : ''}
-              >
-                <ProjectCard project={project} index={i} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          {filtered.map((project, i) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+              className={`h-full ${project.featured && i === 0 && filtered.length > 2 ? 'lg:col-span-2' : ''}`}
+            >
+              <ProjectCard project={project} index={i} />
+            </motion.div>
+          ))}
+        </div>
 
         {/* GitHub CTA */}
         <motion.div
