@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
-import { Github, Linkedin, Mail, Download, ArrowDown, Code2, Zap } from 'lucide-react'
+import { Github, Linkedin, Mail, FileText, ArrowDown, Code2, Zap } from 'lucide-react'
 import { SiLeetcode, SiX } from 'react-icons/si'
 import { personalInfo, stats } from '@/lib/data'
 import AnimatedCounter from '@/components/shared/AnimatedCounter'
@@ -299,9 +299,15 @@ export default function Hero() {
             <Zap size={16} />
             <span>View My Work</span>
           </a>
-          <a href={personalInfo.resumeUrl} download className="btn-ghost">
-            <Download size={16} />
-            <span>Download Resume</span>
+          <a
+            href={personalInfo.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+            aria-label="Open resume in a new tab"
+          >
+            <FileText size={16} />
+            <span>View Resume</span>
           </a>
         </motion.div>
 

@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { Menu, X, Download } from 'lucide-react'
+import { Menu, X, FileText } from 'lucide-react'
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -43,15 +43,8 @@ export default function Navbar() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  const handleResumeClick = () => {
-    const link = document.createElement('a')
-    link.href = RESUME_URL
-    link.download = 'Aadithya_AR_Resume.pdf'
-    link.target = '_blank'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+  // Opens the PDF in a new tab so the browser's built-in viewer handles it —
+  // its toolbar already provides download and print.
 
   return (
     <>
@@ -139,14 +132,16 @@ export default function Navbar() {
             </div>
 
             <div className="hidden md:flex items-center gap-3">
-              <button
-                onClick={handleResumeClick}
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary text-sm py-2.5 px-5"
-                aria-label="Download Resume"
+                aria-label="Open resume in a new tab"
               >
-                <Download size={14} />
+                <FileText size={14} />
                 <span>Resume</span>
-              </button>
+              </a>
             </div>
 
             <button
@@ -201,16 +196,19 @@ export default function Navbar() {
                     {link.label}
                   </motion.button>
                 ))}
-                <motion.button
-                  onClick={handleResumeClick}
+                <motion.a
+                  href={RESUME_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
                   className="mt-8 btn-primary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.42 }}
                 >
-                  <Download size={16} />
-                  <span>Download Resume</span>
-                </motion.button>
+                  <FileText size={16} />
+                  <span>View Resume</span>
+                </motion.a>
               </div>
             </motion.div>
           )}
