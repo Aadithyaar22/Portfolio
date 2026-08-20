@@ -6,13 +6,14 @@ import { Github, ExternalLink, Sparkles, Star } from 'lucide-react'
 import { projects } from '@/lib/data'
 import SectionHeader from '@/components/shared/SectionHeader'
 
-const filters = ['All', 'GenAI', 'Agents', 'ML', 'CV']
+const filters = ['All', 'GenAI', 'Agents', 'ML', 'CV', 'Full-Stack']
 
 const categoryLabel: Record<string, string> = {
   GenAI: 'GenAI / RAG',
   Agents: 'Agentic AI',
   ML: 'Machine Learning',
   CV: 'Computer Vision',
+  'Full-Stack': 'Full-Stack',
 }
 
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {

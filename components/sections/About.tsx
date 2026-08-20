@@ -70,10 +70,10 @@ export default function About() {
                 <div className="ml-6"><span className="variable">name</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;Aadithya A R&quot;</span></div>
                 <div className="ml-6"><span className="variable">role</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;ML Engineer &amp; GenAI Builder&quot;</span></div>
                 <div className="ml-6"><span className="variable">college</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;GAT, Bengaluru&quot;</span></div>
-                <div className="ml-6"><span className="variable">batch</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;2022 – 2026&quot;</span></div>
+                <div className="ml-6"><span className="variable">batch</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;{personalInfo.batch}&quot;</span></div>
                 <div className="ml-6"><span className="variable">goal</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;FAANG ML Engineer&quot;</span></div>
                 <div className="ml-6"><span className="variable">stack</span><span style={{ color: '#A09E9A' }}> = </span><span style={{ color: '#F1F0ED' }}>[</span></div>
-                {['PyTorch', 'LangChain', 'FastAPI', 'GCP', 'ChromaDB'].map((s, i) => (
+                {['PyTorch', 'LangChain', 'Gemini', 'FastAPI', 'GCP'].map((s, i) => (
                   <div key={s} className="ml-10">
                     <motion.span
                       className="string"
