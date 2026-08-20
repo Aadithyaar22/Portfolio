@@ -381,4 +381,5 @@ export const certifications = [
   { name: 'Engineer AI Agents with ADK', issuer: 'Google Cloud Skill Badge', icon: '🤖' },
   { name: 'Agentic AI Internship', issuer: 'Innomatics Research Labs', icon: '💼' },
   { name: 'Data Science Essentials with Python', issuer: 'Cisco Networking Academy', icon: '🐍' },
+  { name: 'Machine Learning Foundation', issuer: 'Infosys Springboard', icon: '🔬' },
 ]
