@@ -165,7 +165,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={ref} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-void">
+    <section ref={ref} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-void pt-28 md:pt-32 pb-16">
       {/* Animated mesh canvas */}
       <MeshBackground />
 
