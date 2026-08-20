@@ -7,16 +7,18 @@ import SectionHeader from '@/components/shared/SectionHeader'
 
 const categoryColors: Record<string, string> = {
   'AI & ML': '#F59E0B',
-  'Languages': '#FF6B6B',
-  'Systems & Cloud': '#3B82F6',
-  'Databases & Vector': '#7C3AED',
+  'GenAI & RAG': '#10B981',
+  'Languages & Core CS': '#FF6B6B',
+  'Backend & Cloud': '#3B82F6',
+  'Databases': '#7C3AED',
 }
 
 const categoryIcons: Record<string, string> = {
   'AI & ML': '🧠',
-  'Languages': '💻',
-  'Systems & Cloud': '☁️',
-  'Databases & Vector': '🗄️',
+  'GenAI & RAG': '🔗',
+  'Languages & Core CS': '💻',
+  'Backend & Cloud': '☁️',
+  'Databases': '🗄️',
 }
 
 function SkillBar({ name, level, icon, color, delay }: { name: string; level: number; icon: string; color: string; delay: number }) {

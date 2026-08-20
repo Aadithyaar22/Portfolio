@@ -21,6 +21,10 @@ export default function AnimatedCounter({
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 })
   const started = useRef(false)
 
+  // Keep the same number of decimals the target has, so 8.47 counts up as
+  // 8.47 rather than snapping from a whole number at the very end.
+  const decimals = (String(end).split('.')[1] || '').length
+
   useEffect(() => {
     if (!inView || started.current) return
     started.current = true
@@ -30,16 +34,16 @@ export default function AnimatedCounter({
       const elapsed = timestamp - startTime
       const progress = Math.min(elapsed / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.floor(eased * end))
+      setCount(Number((eased * end).toFixed(decimals)))
       if (progress < 1) requestAnimationFrame(step)
       else setCount(end)
     }
     requestAnimationFrame(step)
-  }, [inView, end, duration])
+  }, [inView, end, duration, decimals])
 
   return (
     <span ref={ref} className={className}>
-      {prefix}{count}{suffix}
+      {prefix}{count.toFixed(decimals)}{suffix}
     </span>
   )
 }

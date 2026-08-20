@@ -70,6 +70,8 @@ export default function About() {
                 <div className="ml-6"><span className="variable">name</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;Aadithya A R&quot;</span></div>
                 <div className="ml-6"><span className="variable">role</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;ML Engineer &amp; GenAI Builder&quot;</span></div>
                 <div className="ml-6"><span className="variable">college</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;GAT, Bengaluru&quot;</span></div>
+                <div className="ml-6"><span className="variable">degree</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;{personalInfo.degree}&quot;</span></div>
+                <div className="ml-6"><span className="variable">cgpa</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;{personalInfo.cgpa}&quot;</span></div>
                 <div className="ml-6"><span className="variable">batch</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;{personalInfo.batch}&quot;</span></div>
                 <div className="ml-6"><span className="variable">goal</span><span style={{ color: '#A09E9A' }}> = </span><span className="string">&quot;FAANG ML Engineer&quot;</span></div>
                 <div className="ml-6"><span className="variable">stack</span><span style={{ color: '#A09E9A' }}> = </span><span style={{ color: '#F1F0ED' }}>[</span></div>
@@ -114,6 +116,7 @@ export default function About() {
                 >
                   <AnimatedCounter
                     end={stat.value}
+                    prefix={stat.prefix}
                     suffix={stat.suffix}
                     className="font-clash text-3xl font-bold text-gradient-amber"
                   />

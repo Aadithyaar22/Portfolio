@@ -350,6 +350,7 @@ export default function Hero() {
             >
               <AnimatedCounter
                 end={stat.value}
+                prefix={stat.prefix}
                 suffix={stat.suffix}
                 className="font-clash text-3xl font-bold text-gradient-amber"
               />
