@@ -10,6 +10,7 @@ const typeIcons: Record<string, string> = {
   project: '🚀',
   achievement: '⚡',
   milestone: '☁️',
+  work: '💼',
   current: '🎯',
 }
 

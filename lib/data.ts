@@ -23,7 +23,7 @@ export const personalInfo = {
   resumeUrl: '/resume.pdf',
   bio: [
     "I don't just build AI models — I build production-grade AI systems that actually ship. Currently pursuing B.Tech in CSE with AI & ML specialization at Global Academy of Technology, Bengaluru, I've spent the last two years bridging the gap between academic research and real-world deployments.",
-    "That work was put to the test at the Google Gen AI Academy (APAC Edition). I completed Cohort 1, then returned for Cohort 2 and built CivicPulse AI — a civic decision-intelligence platform on Gemini and Google Cloud that finished ranked 20th out of 1,500+ teams. Alongside it: multimodal emotion fusion with calibrated classifiers, cross-corpus Parkinson's detection from three seconds of speech, explainable clinical risk scoring, and multi-document RAG workspaces — all deployed, all measured.",
+    "I spent three months as an Agentic AI intern at Innomatics Research Labs, shipping LangChain, LangGraph and RAG systems behind FastAPI services. That work was put to the test at the Google Cloud Gen AI Academy APAC 2026. I completed Cohort 1, then returned for Cohort 2 and built CivicPulse AI — a civic decision-intelligence platform on Gemini and Google Cloud that finished ranked 20th out of 1,500+ teams. Alongside it: multimodal emotion fusion with calibrated classifiers, cross-corpus Parkinson's detection from three seconds of speech, explainable clinical risk scoring, and multi-document RAG workspaces — all deployed, all measured.",
     "I'm on a deliberate track toward MAANG as an ML Engineer. The path runs through strong fundamentals, systems thinking, and a relentless bias for building. Every project here is live on a URL, benchmarked against a real baseline, and honest about where it falls short — because that's what separates an engineer from a demo.",
   ],
   philosophy: '"Build AI systems that solve real problems, measured in production, not just on paper."',
@@ -294,6 +294,16 @@ export const timeline = [
     color: '#FF6B6B',
   },
   {
+    year: '2026 · Feb – May',
+    type: 'work',
+    title: 'Agentic AI Intern',
+    org: 'Innomatics Research Labs',
+    location: 'Hyderabad, India (Remote)',
+    description: 'Three-month internship building agentic systems end to end — Python problem solving, FastAPI services, prompt engineering, LangChain, RAG pipelines, and multi-agent orchestration with LangGraph. Culminated in a 4-agent pipeline (Orchestrator, Retriever, Synthesizer, Critic) for multi-document understanding.',
+    highlights: ['LangGraph & Agents', 'RAG Pipelines', 'FastAPI in Production'],
+    color: '#EF4444',
+  },
+  {
     year: '2026 · Q2',
     type: 'achievement',
     title: 'Research-Grade Portfolio',
@@ -304,12 +314,12 @@ export const timeline = [
     color: '#10B981',
   },
   {
-    year: '2026 · Q3',
+    year: '2026 · Apr – Jul',
     type: 'achievement',
     title: 'Google Gen AI Academy — Cohort 1 → Cohort 2',
-    org: 'Google Gen AI Academy (APAC Edition)',
-    location: 'Google Cloud · APAC',
-    description: 'Completed Cohort 1 of the Google Gen AI Academy, then returned for Cohort 2 and built CivicPulse AI — a civic decision-intelligence platform on Gemini 2.5 Pro, Cloud Run, Firestore and Cloud Scheduler. It finished ranked 20th out of more than 1,500 competing teams.',
+    org: 'Google Cloud Gen AI Academy APAC 2026',
+    location: 'Google Cloud × Hack2skill · APAC',
+    description: 'Completed Cohort 1 in April, then returned for Cohort 2 in July and built CivicPulse AI — a civic decision-intelligence platform on Gemini 2.5 Pro, Cloud Run, Firestore and Cloud Scheduler. It finished ranked 20th out of more than 1,500 competing teams.',
     highlights: ['Ranked 20th / 1,500+ Teams', 'Cohort 1 Completed', 'Gemini on Google Cloud'],
     color: '#4285F4',
   },
@@ -383,11 +393,11 @@ export const achievements = [
     color: '#10B981',
   },
   {
-    icon: '🤖',
-    title: 'Multi-Agent RAG System',
+    icon: '💼',
+    title: 'Agentic AI Internship',
     org: 'Innomatics Research Labs',
     year: '2026',
-    description: 'Built a 4-agent pipeline (Orchestrator, Retriever, Synthesizer, Critic) using the Claude API for advanced multi-document understanding.',
+    description: 'Three-month internship (Feb–May 2026) in agentic AI — LangChain, LangGraph, RAG and FastAPI — culminating in a 4-agent pipeline (Orchestrator, Retriever, Synthesizer, Critic) for multi-document understanding.',
     color: '#7C3AED',
   },
   {
@@ -401,13 +411,9 @@ export const achievements = [
 ]
 
 export const certifications = [
-  { name: 'Gen AI Academy — Cohort 1 & 2', issuer: 'Google', icon: '✨' },
-  { name: 'Google Cloud Skills Boost', issuer: 'Google', icon: '☁️' },
-  { name: 'Deep Learning Specialization', issuer: 'deeplearning.ai', icon: '🧠' },
-  { name: 'LangChain for LLM Apps', issuer: 'Coursera', icon: '🔗' },
-  { name: 'ML with Python', issuer: 'IBM', icon: '🔬' },
-  { name: 'TensorFlow Developer', issuer: 'Google', icon: '📊' },
-  { name: 'FastAPI Mastery', issuer: 'Udemy', icon: '⚡' },
-  { name: 'Docker & Kubernetes', issuer: 'Udemy', icon: '🐳' },
-  { name: 'Prompt Engineering', issuer: 'Anthropic', icon: '🎯' },
+  { name: 'Gen AI Academy APAC — Cohort 2', issuer: 'Google Cloud × Hack2skill', icon: '✨' },
+  { name: 'Gen AI Academy APAC — Cohort 1', issuer: 'Google Cloud × Hack2skill', icon: '✨' },
+  { name: 'Engineer AI Agents with ADK', issuer: 'Google Cloud Skill Badge', icon: '🤖' },
+  { name: 'Agentic AI Internship', issuer: 'Innomatics Research Labs', icon: '💼' },
+  { name: 'Data Science Essentials with Python', issuer: 'Cisco Networking Academy', icon: '🐍' },
 ]

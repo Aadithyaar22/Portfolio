@@ -97,7 +97,7 @@ export default function Achievements() {
 
             <div className="flex overflow-hidden">
               <div className="marquee-track">
-                {[...certifications, ...certifications].map((cert, i) => (
+                {[...certifications, ...certifications, ...certifications, ...certifications].map((cert, i) => (
                   <motion.div
                     key={`${cert.name}-${i}`}
                     className="flex items-center gap-3 px-5 py-3 rounded-xl flex-shrink-0"
